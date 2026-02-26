@@ -8,13 +8,16 @@
     {
       "src": "client/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "client/build" }
+      "config": { 
+        "distDir": "build",
+        "buildCommand": "npm run build"
+      }
     }
   ],
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/server/server.js"
+      "destination": "server/server.js"
     },
     {
       "source": "/((?!api).*)",
