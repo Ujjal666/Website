@@ -9,19 +9,13 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": { 
-        "distDir": "build",
-        "buildCommand": "npm run build"
+        "distDir": "client/build" 
       }
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "server/server.js"
-    },
-    {
-      "source": "/((?!api).*)",
-      "destination": "/client/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "server/server.js" },
+    { "source": "/(.*)", "destination": "client/$1", "check": true },
+    { "source": "/(.*)", "destination": "client/index.html" }
   ]
 }
